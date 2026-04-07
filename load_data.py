@@ -1,7 +1,8 @@
 import pandas as pd
 from pymongo import MongoClient
+import os
 
-MONGO_URI = "mongodb+srv://edark3_db_user:nFGRJMFMmYKqdDis@cluster0.cdo6mbn.mongodb.net/ev_db?retryWrites=true&w=majority"
+MONGO_URI = os.getenv("MONGO_URI")
 
 client = MongoClient(MONGO_URI)
 db = client["ev_db"]
@@ -21,6 +22,5 @@ if records:
         print(f"Inserted {i + len(batch)} records")
 
     print(f"Finished inserting {len(records)} records.")
-
 else:
     print("No records found.")
